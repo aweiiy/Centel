@@ -41,14 +41,6 @@
           login_password: "{{ mysql_root_password }}"
         tags: [ mysql ]
 
-      - name: Creates database for WordPress
-        mysql_db:
-          name: "{{ mysql_db }}"
-          state: present
-          login_user: root
-          login_password: "{{ mysql_root_password }}"
-        tags: [ mysql ]
-
       - name: ensure mysql listening on all ports
         lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address ={{ db_address }} "
         tags: [ 'configure' ]
@@ -58,13 +50,8 @@
                  enabled=yes
                  state=restarted
 
-      - name: Create MySQL user for WordPress
-        mysql_user:
-          name: "{{ mysql_user }}"
-          password: "{{ mysql_password }}"
-          priv: "{{ mysql_db }}.*:ALL"
-          host: {{ remote_host_ip }}
-          state: present
-          login_user: root
-          login_password: "{{ mysql_root_password }}"
-        tags: [ mysql ]
+      - name: Create the MySQL user
+        shell: "mysql -e \"CREATE DATABASE {{ mysql_db }}; CREATE USER '{{ mysql_user }}'@'{{ remote_host_ip }}' IDENTIFIED BY 
+               '{{ mysql_password }}'; GRANT ALL PRIVILEGES ON {{ mysql_db }}.* TO 
+               '{{ mysql_user }}'@'{{ remote_host_ip }}'; FLUSH PRIVILEGES;\" 
+               -uroot -p'{{ mysql_root_password }}'"
