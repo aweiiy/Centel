@@ -44,5 +44,5 @@
       repo: "{{ theme_repo }}"
       dest: "{{root_directory}}/wp-content/themes/{{theme_name}}"
 
-   - name: Activate theme
-     command: wp theme activate {{theme_name}} chdir={{root_directory}}
+  - name: Activate theme
+    command: wp theme activate {{theme_name}} chdir={{root_directory}}

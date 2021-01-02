@@ -1,8 +1,8 @@
 ---
   - name: "Set up database for website"
-    hosts: databases
+    hosts: database
     vars_files:
-      - ./vars/default.yaml
+      - vars/default.yml
     tasks:
 
       - name: Install prerequisites
