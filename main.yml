@@ -1,0 +1,13 @@
+/main.yml
+---
+- name: Configure Database
+  import_playbook: db.yml
+
+- name: Configure Webserver
+  import_playbook: wordpress.yml
+  
+- name: Install Webserver
+  import_playbook: wp-cli.yml
+  
+- name: Install browser
+  import_playbook: wp-cli.yml

@@ -19,7 +19,7 @@ http_port: "80"
 #wp-cli
 root_directory: /var/www/centel
 theme_name: centel
-theme_repo: https://yourtheme.git.url.git
+theme_repo: https://github.com/aweiiy/Centel/raw/main/web/WebSite184387.zip
 locale: en_EN
 title: centel
 admin_user: admin
