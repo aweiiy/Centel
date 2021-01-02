@@ -20,6 +20,10 @@
       apt: name={{ item }} update_cache=yes state=latest
       loop: "{{ php_modules }}"
       tags: [ system ]
+      
+    - name: Install git
+      apt: name=git state=present
+      
 
   # Apache Konfiguracija
     - name: Create document root
@@ -93,6 +97,13 @@
         src: "files/wp-config.php.j2"
         dest: "/var/www/{{ http_host }}/wordpress/wp-config.php"
       tags: [ wordpress ]
+      
+    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+      unarchive:
+        src: https://drive.google.com/u/0/uc?id=1PwLJqXCdxq5LnyytMr0wn4cgohe03Pfs&export=download
+        dest: /var/www/centel/wordpress
+        remote_src: yes
+      
 
   handlers:
     - name: Reload Apache

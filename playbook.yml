@@ -20,6 +20,10 @@
       apt: name={{ item }} update_cache=yes state=latest
       loop: "{{ php_modules }}"
       tags: [ system ]
+      
+    - name: Install git
+      apt: name=git state=present
+      
 
   # Apache Konfiguracija
     - name: Create document root
