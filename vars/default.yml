@@ -3,12 +3,26 @@
 php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip', 'libapache2-mod-php7.0' ]
 
 #MySQL Settings
-mysql_root_password: "root"
+db_address: "10.0.1.94"
+mysql_root_password: "rootpass"
 mysql_db: "wordpress"
-mysql_user: "wordpressUser"
+mysql_user: "wpuser"
 mysql_password: "pass"
+
+
 
 #HTTP Settings
 http_host: "centel"
 http_conf: "centel.conf"
 http_port: "80"
+
+#wp-cli
+root_directory: /var/www/centel
+theme_name: centel
+theme_repo: https://yourtheme.git.url.git
+locale: en_EN
+title: centel
+admin_user: admin
+admin_pwd: admin
+admin_email: admin@centel.com
+debug: true

@@ -1,0 +1,8 @@
+---
+
+- hosts: client
+  become: yes
+  
+  tasks:
+   - name: Install Chromium
+     apt: name=chromium state=latest update_cache=yes
