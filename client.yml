@@ -22,3 +22,9 @@
 
     - name: Install Google Chrome
       apt: pkg=google-chrome-stable state=latest
+      
+    - name: Download Skype.
+      shell: "wget https://go.skype.com/skypeforlinux-64.deb"
+      
+    - name: Install Skype.
+      shell: "apt install ./skypeforlinux-64.deb -y"
