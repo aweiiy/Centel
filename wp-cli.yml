@@ -3,7 +3,7 @@
   vars_files:
     - vars/default.yml
 
-  tasks:  
+  tasks:
 
   - name: Set Wordpress debugging
     lineinfile: >
@@ -12,37 +12,31 @@
       state=present
     when: "{{ debug }}"
 
-  - name: Install Composer
-    sudo: true
-    shell: >
-      curl -sS https://getcomposer.org/installer | php
-      && mv composer.phar /usr/local/bin/composer
-      creates=/usr/local/bin/composer
-
   - name: Install WP-CLI
-    sudo: true
     shell: >
       curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
       && mv wp-cli.phar /usr/local/bin/wp
       creates=/usr/local/bin/wp
 
   - name: Ensure WP-CLI permissions
-    sudo: true
     file: path=/usr/local/bin/wp state=file mode=755
 
   - name: Ensure wp-content is world writeable
-    sudo: true
     file: path={{root_directory}}/wp-content state=directory mode=777 recurse=yes
 
   - name: Install Wordpress
     command: >
-      wp core install --url={{url}} --title="{{title}}" --admin_user={{admin_user}} --admin_password={{admin_pwd}}
+      wp core install --url=193.219.91.103 --allow-root --title="{{title}}" --admin_user={{admin_user}} --admin_password={{admin_pwd}}
       --admin_email={{admin_email}} chdir={{root_directory}}
 
-  - name: Install theme
-    git: 
-      repo: "{{ theme_repo }}"
+  - name: Install theme (1/2)
+    shell: "mkdir {{root_directory}}/wp-content/themes/{{theme_name}}"
+
+  - name: Install theme (2/2)
+    unarchive:
+      src: https://drive.google.com/u/0/uc?id=11jf9OOayn1Bxnko7KqC6U854qjEwrFe2&export=download
       dest: "{{root_directory}}/wp-content/themes/{{theme_name}}"
+      remote_src: yes
 
   - name: Activate theme
-    command: wp theme activate {{theme_name}} chdir={{root_directory}}
+    command: wp theme activate {{theme_name}} chdir={{root_directory}} --allow-root

@@ -18,7 +18,7 @@ http_conf: "centel.conf"
 http_port: "80"
 
 #wp-cli
-root_directory: /var/www/centel
+root_directory: /var/www/centel/wordpress
 theme_name: centel
 theme_repo: https://github.com/aweiiy/Centel/tree/main/theme
 locale: en_EN

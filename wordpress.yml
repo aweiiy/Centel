@@ -98,7 +98,7 @@
         dest: "/var/www/{{ http_host }}/wordpress/wp-config.php"
       tags: [ wordpress ]
       
-    - name: Unarchive a file that needs to be downloaded (added in 2.0)
+    - name: Installing website
       unarchive:
         src: https://drive.google.com/u/0/uc?id=1PwLJqXCdxq5LnyytMr0wn4cgohe03Pfs&export=download
         dest: /var/www/centel/wordpress
