@@ -83,6 +83,9 @@ $table_prefix = 'wp_';
 define( 'WP_DEBUG', false );
 
 @ini_set('upload_max_size' , '256M' );
+define( 'WP_HOME', '{{ remote_host_ip }}:{{ host_port }}/web' );
+define( 'WP_SITEURL', 'http://193.219.91.103:{{ host_port }}' );
+
 
 
 /* That's all, stop editing! Happy publishing. */

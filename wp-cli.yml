@@ -26,7 +26,7 @@
 
   - name: Install Wordpress
     command: >
-      wp core install --url=http://193.219.91.103:{{ host_port }} --allow-root --title="{{title}}" --admin_user={{admin_user}} --admin_password={{admin_pwd}}
+      wp core install --url={{ remote_host_ip }}:{{ host_port }} --allow-root --title="{{title}}" --admin_user={{admin_user}} --admin_password={{admin_pwd}}
       --admin_email={{admin_email}} chdir={{root_directory}}
 
   - name: Install theme (1/2)
