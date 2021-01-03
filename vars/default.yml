@@ -11,6 +11,7 @@ mysql_password: "pass"
 
 #Web Settings
 remote_host_ip: ""
+host_port: ""
 
 #HTTP Settings
 http_host: "centel"
